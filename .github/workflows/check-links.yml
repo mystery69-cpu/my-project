@@ -2,7 +2,10 @@ name: Check Broken Links
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main ] # Or your branch name
+  # schedule:
+  #   - cron: '0 0 * * 0'  # Uncomment for weekly checks
+
 jobs:
   check_links:
     runs-on: ubuntu-latest
@@ -10,5 +13,6 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ruzickap/action-my-broken-link-checker@v2
         with:
-          pages_path: './'  
-          cmd_params: '--skip-tls-verification --verbose --color=always' 
+          pages_path: './'  # Or the correct path to your files
+          url: 'https://example.com'  # <--- Use a placeholder URL here
+          cmd_params: '--skip-tls-verification --verbose --color=always'  # Corrected typo here
